@@ -1,23 +1,22 @@
 using System.Security.Claims;
 using AspNetIdentityEndpoints.Configuration;
-using AspNetIdentityEndpoints.Data;
-using AspNetIdentityEndpoints.Dtos;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AspNetIdentityEndpoints.Endpoints;
 
 public class ProtectedEndpoints : IEndPoint
 {
-    private static string _groupName = "/protected";
+    private const string GroupName = "/protected";
+
     public void MapEndpoint(WebApplication app)
     {
-        var endpointGroup = app.MapGroup(_groupName);
+        var endpointGroup = app.MapGroup(GroupName);
             
         endpointGroup.MapPost("/", (ClaimsPrincipal user) =>
         {
             var name = user.Identity!.Name;
+            var isUser = user.IsInRole("User");
+            var isAdmin = user.IsInRole("Admin");
             
             return Results.Ok();
         })

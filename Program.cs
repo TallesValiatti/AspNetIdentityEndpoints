@@ -1,10 +1,8 @@
-using System.Security.Claims;
 using AspNetIdentityEndpoints.Configuration;
 using AspNetIdentityEndpoints.Data;
-using AspNetIdentityEndpoints.Dtos;
-using Microsoft.AspNetCore.Authorization;
+using AspNetIdentityEndpoints.EmailService;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddIdentityApiEndpoints<CustomUser>()
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddTransient<IEmailSender, EmailService>();
 
 builder.Services.AddAuthorization();
 
@@ -32,23 +32,6 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.MapEndpoint();
-  
-// app.MapGet("/public", () => $"This is a public endpoint");
-//
-// app.MapGet("/", (ClaimsPrincipal user) => $"Hello {user.Identity!.Name}")
-//     .RequireAuthorization();  
-//
-// app.MapGet("/admin", (ClaimsPrincipal user) => $"Hello {user.Identity!.Name}")
-//     .RequireAuthorization()
-//     .RequireAuthorization(new AuthorizeAttribute() { Roles = "Admin" });
-//
-// app.MapPost("/logout", async (SignInManager<CustomUser> signInManager, [FromBody] object empty) =>
-//     {
-//         await signInManager.SignOutAsync();
-//         return Results.Ok();
-//     })
-//     .WithOpenApi()
-//     .RequireAuthorization();
 
 app.Run();
 
