@@ -1,0 +1,5 @@
+# ASP.NET Identity endpoints 
+
+This repository provides a detailed guide on how to create a Web API for Single Page Applications (SPA) using ASP.NET Core Identity endpoints. It covers all the necessary steps to set up and implement authentication and authorization in a .NET Core application, leveraging the power of ASP.NET Core Identity. Through practical, step-by-step examples, you will learn how to create and manage users, roles, and permissions in your API, ensuring a secure and effective authentication experience for SPA applications.
+
+Additionally, this repository demonstrates the implementation of an SMTP email service for identity flows, such as password reset and email confirmation. With this integration, the Web API can automatically send emails to users as part of authentication and authorization flows, providing an additional layer of security and identity verification. This repository is a valuable reference for developers looking to integrate comprehensive identity and security features into their .NET-based SPA applications.
