@@ -1,0 +1,6 @@
+@AspNetIdentityEndpoints_HostAddress = http://localhost:5043
+
+GET {{AspNetIdentityEndpoints_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
