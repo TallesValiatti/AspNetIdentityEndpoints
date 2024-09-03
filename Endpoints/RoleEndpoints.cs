@@ -7,10 +7,10 @@ namespace AspNetIdentityEndpoints.Endpoints;
 
 public class RoleEndpoints : IEndPoint
 {
-    private static string _groupName = "/role";
+    private const string GroupName = "/role";
     public void MapEndpoint(WebApplication app)
     {
-        var endpointGroup = app.MapGroup(_groupName);
+        var endpointGroup = app.MapGroup(GroupName);
         endpointGroup.MapPost("/", async ([FromServices] RoleManager<IdentityRole> roleManager, CreateRole request) =>
         {
             var roleExist = await roleManager.RoleExistsAsync(request.Name);

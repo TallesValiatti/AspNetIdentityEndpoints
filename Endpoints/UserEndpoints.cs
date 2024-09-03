@@ -9,10 +9,11 @@ namespace AspNetIdentityEndpoints.Endpoints;
 
 public class UserEndpoints : IEndPoint
 {
-    private static string _groupName = "/user";
+    private const string GroupName = "/user";
+
     public void MapEndpoint(WebApplication app)
     {
-        var endpointGroup = app.MapGroup(_groupName);
+        var endpointGroup = app.MapGroup(GroupName);
         endpointGroup.MapPost("/", async (
                 [FromServices] IUserStore<CustomUser> userStore,
                 [FromServices] SignInManager<CustomUser> signInManager,
